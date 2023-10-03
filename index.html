@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <title>Lista de Tareas</title>
 </head>
 
@@ -17,6 +19,11 @@
                     <input type="text" name="add" placeholder="Agregar Tareas">
                     <svg class="fas fa-plus" id="plus" xmlns="http://www.w3.org/2000/svg" height="2em"
                         viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #083b7e
+                            }
+                        </style>
                         <path
                             d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                     </svg>
@@ -34,17 +41,8 @@
 
 
 
-            <ul class="todo__list">
-                <li class="todo__item">
-                    <input type="checkbox" id="todo-1" onchange="handleCheck('todo-1')">
-                    <label for="todo-1">
-                        <span class="check__box">
-                            <i class="far fa-check check__pointer"></i>
-                        </span>
-                        <span class="item__title">Booking hotel</span>
-                    </label>
-                    <i class="fas fa-trash-alt item__trash-can"></i>
-                </li>
+            <ul class="todo__list" id="todoList">
+
             </ul>
         </div>
     </div>

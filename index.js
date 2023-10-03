@@ -5,15 +5,29 @@ var filter = document.querySelector('.filter');
 var max_id = 3;
 
 window.onload = function() {
-	let deleteIcons = document.querySelectorAll('.item__trash-can');
+    let deleteIcons = document.querySelectorAll('.item__trash-can');
 
-	deleteIcons.forEach((node, index) => {
-		node.addEventListener('click', (e) => {
-			todolist.removeChild(e.target.parentElement);
-		});
-	});
+    deleteIcons.forEach((node, index) => {
+        node.addEventListener('click', (e) => {
+            const parentElement = e.target.parentElement;
+            todolist.removeChild(parentElement);
+          
+          
+        });
+    });
 
-	filterTodo(filter.value);
+    filterTodo(filter.value);
+}
+
+// Función para eliminar una tarea del LocalStorage
+function removeTaskFromLocalStorage(taskId) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    // Filtrar la tarea a eliminar
+    tasks = tasks.filter(task => task.id !== taskId);
+
+    // Guardar la nueva lista de tareas en el LocalStorage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function addTodo(inputVal) {
@@ -151,3 +165,49 @@ document.addEventListener("DOMContentLoaded", function() {
     // Llamar a la función para agregar opciones
     agregarOpcionesAsignaturas();
 });
+
+var todolist = document.getElementById('todoList');
+var max_id = 1; // ID inicial
+
+// Crear un ciclo para agregar múltiples elementos
+for (let i = 0; i < 3; i++) {
+
+
+	// Incrementar el ID máximo
+	max_id += 1;
+
+	// Configurar el elemento LI
+	item.setAttribute('class', 'todo__item');
+
+	// Configurar la casilla de verificación
+	inputCheckbox.setAttribute('type', 'checkbox');
+	inputCheckbox.setAttribute('id', `todo-${max_id}`);
+	inputCheckbox.addEventListener('change', (e) => {
+		handleCheck(`todo-${max_id}`);
+	});
+
+	// Configurar la etiqueta
+	label.setAttribute('for', `todo-${max_id}`);
+	customCheckbox.setAttribute('class', 'check__box');
+	labelWord.setAttribute('class', 'item__title');
+	labelWord.textContent = "New Task " + max_id;
+
+	// Configurar el ícono de verificación
+	checkPointer.setAttribute('class', 'far fa-check check__pointer');
+
+	// Configurar el ícono de eliminación
+	trashCan.setAttribute('class', 'fas fa-trash-alt item__trash-can');
+	trashCan.addEventListener('click', (e) => {
+		todolist.removeChild(e.target.parentElement);
+	});
+
+	// Combinar elementos
+	customCheckbox.appendChild(checkPointer);
+	label.appendChild(customCheckbox);
+	label.appendChild(labelWord);
+	item.appendChild(inputCheckbox);
+	item.appendChild(label);
+	item.appendChild(trashCan);
+
+	todolist.appendChild(item);
+}
